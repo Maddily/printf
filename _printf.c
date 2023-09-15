@@ -59,6 +59,10 @@ int _printf(const char *format, ...)
 					int_format_handler(va_arg(ap, int), count);
 					format++;
 					break;
+				case 'u':
+					u_format_handler(va_arg(ap, unsigned int), count);
+					format++;
+					break;
 				default:
 					default_handler(character, format, count);
 					format++;
