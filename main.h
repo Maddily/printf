@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 int _printf(const char *format, ...);
 int find_length(char *s);
@@ -19,5 +20,8 @@ void int_format_handler(int num, int count);
 
 /* --------- Characters ----*/
 int our_ptchar(char c);
+
+/*--- Custom Format Specifiers ---*/
+void custom_b_handler(va_list ap, int count);
 
 #endif
