@@ -16,5 +16,7 @@ int main(void)
 	_printf("The sum of 40 and 1.5 is equal to %d.\n", (num1 + num4));
 	printf("The unsigned number is: %u\n", number);
 	_printf("The unsigned number is: %u\n", number);
+	printf("The unsigned octal number is: %o\n", number);
+	_printf("The unsigned octal number is: %o\n", number);
 	return (0);
 }
