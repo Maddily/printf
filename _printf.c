@@ -63,6 +63,10 @@ int _printf(const char *format, ...)
 					u_format_handler(va_arg(ap, unsigned int), count);
 					format++;
 					break;
+				case 'o':
+					o_format_handler(va_arg(ap, unsigned int), count);
+					format++;
+					break;
 				case 'b':
 					custom_b_handler(ap, count);
 					format++;
