@@ -14,9 +14,9 @@ The custom printf function is an implementation of the widely used printf functi
 
 ## Contributors details
 
-Mayada Saeed - [`Maddily`](https://github.com/Maddily) - [`<linkedin-profile-link>`](https://www.linkedin.com/in/mayadase/)
+Mayada Saeed - [`Maddily`](https://github.com/Maddily) - [`LinkedIn Profile`](https://www.linkedin.com/in/mayadase/)
 
-Sibongile Nhlema - [`Sibongile-Nhlema`](https://github.com/Sibongile-Nhlema) - [`<linkedin-profile-link>`](https://www.linkedin.com/in/sibongile-nhlema/)
+Sibongile Nhlema - [`Sibongile-Nhlema`](https://github.com/Sibongile-Nhlema) - [`LinkedIn Profile`](https://www.linkedin.com/in/sibongile-nhlema/)
 
 ## Tasks
 
