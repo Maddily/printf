@@ -19,6 +19,8 @@ void default_handler(char character, const char *format, int count);
 void int_format_handler(int number, int count);
 void u_format_handler(unsigned int number, int count);
 void o_format_handler(unsigned int number, int count);
+void x_format_handler(unsigned int number, int count);
+void printUpperHex(unsigned int number, int count);
 
 /* --------- Characters ----*/
 int our_ptchar(char c);
