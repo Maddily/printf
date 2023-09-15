@@ -54,6 +54,14 @@ int _printf(const char *format, ...)
 					percent_handler(character, count);
 					format++;
 					break;
+				case 'd':
+					int_format_handler(va_arg(ap, int), count);
+					format++;
+					break;
+				case 'i':
+					int_format_handler(va_arg(ap, int), count);
+					format++;
+					break;
 				default:
 					default_handler(character, format, count);
 					format++;
