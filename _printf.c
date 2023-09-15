@@ -55,9 +55,6 @@ int _printf(const char *format, ...)
 					format++;
 					break;
 				case 'd':
-					int_format_handler(va_arg(ap, int), count);
-					format++;
-					break;
 				case 'i':
 					int_format_handler(va_arg(ap, int), count);
 					format++;
