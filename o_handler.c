@@ -10,7 +10,8 @@
  * Return: nothing
  */
 
-void o_format_handler(unsigned int number, int *count, int *total, char *buffer)
+void o_format_handler(unsigned int number, int *count,
+		int *total, char *buffer)
 {
 	char octal_buffer[32];
 	int k, i = 0;

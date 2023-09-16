@@ -51,12 +51,10 @@ int _printf(const char *format, ...)
 					o_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
 					break;
 				case 'x':
-					x_format_handler(va_arg(ap, unsigned int), count);
-					format++;
+					x_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
 					break;
 				case 'X':
-					printUpperHex(va_arg(ap, unsigned int), count);
-					format++;
+					printUpperHex(va_arg(ap, unsigned int), &count, &total, buffer);
 					break;
 				case 'p':
 					ptr_format_handler(ap, &count, &total, buffer);
