@@ -27,13 +27,13 @@ void print_S(char *string, int count, int len, char *null)
 				our_ptchar('\\');
 				our_ptchar('x');
 				our_ptchar((string[i] >> 4) + '0');
-				out_ptchar((string[i] & 0xF) + '0');
-				*count += 4;
+				our_ptchar((string[i] & 0xF) + '0');
+				count += 4;
 			}
 			else
 			{
 				our_ptchar(string[i]);
-				*count += 1;
+				count += 1;
 			}
 		}
 	}
@@ -47,13 +47,13 @@ void print_S(char *string, int count, int len, char *null)
 				our_ptchar('\\');
 				our_ptchar('x');
 				our_ptchar((null[i] >> 4) + '0');
-				out_ptchar((null[i] & 0xF) + '0');
-				*count += 4;
+				our_ptchar((null[i] & 0xF) + '0');
+				count += 4;
 			}
 			else
 			{
 				our_ptchar(null[i]);
-				*count += 1;
+				count += 1;
 			}
 		}
 	}
