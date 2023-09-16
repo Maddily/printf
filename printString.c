@@ -16,45 +16,24 @@
 void print_S(char *string, int count, int len, char *null)
 {
 	int i = 0;
+	char *input = (string != NULL) ? string : null;
 
-	if (string != NULL)
+	len = find_length(input);
+
+	for (i = 0; i < len; i++)
 	{
-		len = find_length(string);
-		for (i = 0; i < len; i++)
+		if (input[i] < 32 || input[i] >= 127)
 		{
-			if (string[i] < 32 || string[i] >= 127)
-			{
-				our_ptchar('\\');
-				our_ptchar('x');
-				our_ptchar((string[i] >> 4) + '0');
-				our_ptchar((string[i] & 0xF) + '0');
-				count += 4;
-			}
-			else
-			{
-				our_ptchar(string[i]);
-				count += 1;
-			}
+			our_ptchar('\\');
+			our_ptchar('x');
+			our_ptchar((input[i] >> 4) + '0');
+			our_ptchar((input[i] & 0xF) + '0');
+			count += 4;
 		}
-	}
-	else
-	{
-		len = find_length(null);
-		for (i = 0; i < len; i++)
+		else
 		{
-			if (null[i] < 32 || null[i] >= 127)
-			{
-				our_ptchar('\\');
-				our_ptchar('x');
-				our_ptchar((null[i] >> 4) + '0');
-				our_ptchar((null[i] & 0xF) + '0');
-				count += 4;
-			}
-			else
-			{
-				our_ptchar(null[i]);
-				count += 1;
-			}
+			our_ptchar(input[i]);
+			count += 1;
 		}
 	}
 }

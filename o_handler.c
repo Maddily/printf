@@ -11,7 +11,9 @@
 void o_format_handler(unsigned int number, int count)
 {
 	char octal[32];
+	char buffer[1024];
 	int k;
+	int buffer_index = 0;;
 
 	count = 0;
 
@@ -23,5 +25,13 @@ void o_format_handler(unsigned int number, int count)
 	octal[count] = '\0';
 
 	for (k = count - 1; k >= 0; k--)
-		our_ptchar(octal[k]);
+	{
+		buffer[buffer_index++] = octal[k];
+
+		if (buffer_index == 1024 || k == 0)
+		{
+			write(1, buffer, buffer_index);
+			buffer_index = 0;
+		}
+	}
 }

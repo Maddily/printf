@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <limits.h>
 
+#define BUFFER_SIZE 1024
+
 int _printf(const char *format, ...);
 int find_length(char *s);
 int find_const_length(const char *s);
