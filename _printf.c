@@ -61,6 +61,10 @@ int _printf(const char *format, ...)
 				case 'b':
 					custom_b_handler(ap, &count, &total, buffer);
 					break;
+				case 'S':
+					print_S(va_arg(ap, char *), count, len, null);
+					format++;
+					break;
 				default:
 					default_handler(format, &count, &total, buffer);
 
