@@ -1,7 +1,10 @@
-#include "main.c"
+#include "main.h"
 
 /**
  * print_S - prints the string
+ * (non printable characters displayed as /x, followed
+ * by ASCII code value in hexadecimal)
+ *
  * @string: characters provided
  * @count: number of printed characters
  * @len: length of string provided
@@ -12,16 +15,46 @@
 
 void print_S(char *string, int count, int len, char *null)
 {
+	int i = 0;
+
 	if (string != NULL)
 	{
 		len = find_length(string);
-		write(1, string, len);
-		*count += len;
+		for (i = 0; i < len; i++)
+		{
+			if (string[i] < 32 || string[i] >= 127)
+			{
+				our_ptchar('\\');
+				our_ptchar('x');
+				our_ptchar((string[i] >> 4) + '0');
+				out_ptchar((string[i] & 0xF) + '0');
+				*count += 4;
+			}
+			else
+			{
+				our_ptchar(string[i]);
+				*count += 1;
+			}
+		}
 	}
 	else
 	{
 		len = find_length(null);
-		write(1, null, len);
-		*count += len;
+		for (i = 0; i < len; i++)
+		{
+			if (null[i] < 32 || null[i] >= 127)
+			{
+				our_ptchar('\\');
+				our_ptchar('x');
+				our_ptchar((null[i] >> 4) + '0');
+				out_ptchar((null[i] & 0xF) + '0');
+				*count += 4;
+			}
+			else
+			{
+				our_ptchar(null[i]);
+				*count += 1;
+			}
+		}
 	}
 }
