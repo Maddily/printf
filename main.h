@@ -24,6 +24,7 @@ void printUpperHex(unsigned int number, int count);
 
 /* --------- Characters ----*/
 int our_ptchar(char c);
+void print_S(char *string, int count, int len, char *null);
 
 /*--- Custom Format Specifiers ---*/
 void custom_b_handler(va_list ap, int count);
