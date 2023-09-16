@@ -5,9 +5,11 @@
  * Description: The %b format specifier coverts an unsigned int argument
  * to binary
  * @ap: Argument pointer
- * @count: The number of printed characters
+ * @count: A pointer to the number of printed characters
+ * @total: A pointer to the total number of characters printed
+ * @buffer: A pointer to the buffer holding the characters to be printed
  */
-void custom_b_handler(va_list ap, int count)
+void custom_b_handler(va_list ap, int *count, int *total, char *buffer)
 {
 	unsigned int number;
 	char bin[CHAR_BIT * sizeof(unsigned int)];
@@ -16,8 +18,14 @@ void custom_b_handler(va_list ap, int count)
 	number = va_arg(ap, unsigned int);
 	if (number == 0)
 	{
-		our_ptchar('0');
-		count++;
+		buffer[*count] = '0';
+		(*count)++;
+
+		if (*count == 1024)
+		{
+			total += write(1, (const void *)buffer, *count);
+			*count = 0;
+		}
 		return;
 	}
 	if (number > 0)
@@ -30,8 +38,14 @@ void custom_b_handler(va_list ap, int count)
 		}
 		for (j = i - 1; j >= 0; j--)
 		{
-			our_ptchar(bin[j]);
-			count++;
+			buffer[*count] = bin[j];
+			(*count)++;
+			
+			if (*count == 1024)
+			{
+				total += write(1, (const void *)buffer, *count);
+				*count = 0;
+			}
 		}
 	}
 }
