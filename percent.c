@@ -2,12 +2,18 @@
 
 /**
  * percent_handler - Handles the %% and prints '%'
- * @character: The character provided as an argument
- * @count: The number of printed characters
+ * @count: A pointer to the number of printed characters
+ * @total: A pointer to the total number of characters printed
+ * @buffer: A pointer to the buffer holding the characters to be printed
  */
-void percent_handler(char character, int count)
+void percent_handler(int *count, int *total, char *buffer)
 {
-	character = '%';
-	write(1, &character, 1);
-	count++;
+	buffer[*count] = '%';
+	(*count)++;
+
+	if (*count == 1024)
+	{
+		total += write(1, (const void *)buffer, *count);
+		*count = 0;
+	}
 }
