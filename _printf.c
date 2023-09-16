@@ -5,22 +5,6 @@
 #include "main.h"
 
 /**
- * find_length - Finds the length of a string
- * @s: A pointer to a string
- * Return: The length of the string s
- */
-int find_length(char *s)
-{
-	int len;
-
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-
-	return (len);
-}
-
-/**
  * _printf - Produces output according to a format
  * @format: A character string composed of zero or more directives
  * Return: The number of characters printed
@@ -29,50 +13,60 @@ int find_length(char *s)
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	char character = ' ', *null = "(null)", *string;
-	int len, count;
+	char *string, buffer[1024];
+	int count = 0, total = 0;
 
+	trailing_percent_error(format);
 	if (format != NULL)
 	{
-		va_start(ap, format), count = 0;
+		va_start(ap, format);
 		while (*format)
 		{
 			if (*format == '%')
-				switch (*(format + 1))
+			{
+				format++;
+				switch (*format)
 				{
 				case 'c':
 					char_format_handler
-						(ap, character, count);
-					format++;
+						(ap, &count, &total, buffer);
 					break;
 				case 's':
 					string = va_arg(ap, char *);
-					str_format_handler(string, count, len, null);
-					format++;
+					str_format_handler(string, &count, &total, buffer);
 					break;
 				case '%':
-					percent_handler(character, count);
-					format++;
+					percent_handler(&count, &total, buffer);
 					break;
 				case 'd':
 				case 'i':
-					int_format_handler(va_arg(ap, int), count);
-					format++;
+					int_format_handler(va_arg(ap, int), &count, &total, buffer);
 					break;
 				case 'b':
-					custom_b_handler(ap, count);
-					format++;
+					custom_b_handler(ap, &count, &total, buffer);
 					break;
 				default:
-					default_handler(character, format, count);
-					format++;
+					default_handler(format, &count, &total, buffer);
+
 				}
+			}
 			else
-				write(1, format, 1), count++;
+			{
+				buffer[count++] = *format;
+
+				if (count == 1024)
+				{
+					total += write(1, (const void *)buffer, count);
+					count = 0;
+				}
+			}
 			format++;
-			len = 0;
+		}
+		if (count > 0)
+		{
+			total += write(1, (const void *)buffer, count);
 		}
 	}
 	va_end(ap);
-	return (count);
+	return (total);
 }

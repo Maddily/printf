@@ -2,15 +2,29 @@
 
 /**
  * default_handler - Handles the %% and prints '%'
- * @character: The character provided as an argument
  * @format: A pointer to the format string
- * @count: The number of printed characters
+ * @count: A pointer to the number of printed characters
+ * @total: A pointer to the total number of characters printed
+ * @buffer: A pointer to the buffer holding the characters to be printed
  */
-void default_handler(char character, const char *format, int count)
+void default_handler(const char *format, int *count, int *total, char *buffer)
 {
-	character = '%';
-	write(1, &character, 1);
-	write(1, format + 1, 1);
+	buffer[*count] = '%';
+	(*count)++;
+
+	if (*count == 1024)
+	{
+		total += write(1, (const void *)buffer, *count);
+		*count = 0;
+	}
+
+	buffer[*count] = *format;
+	(*count)++;
 	format++;
-	count += 2;
+
+	if (*count == 1024)
+	{
+		total += write(1, (const void *)buffer, *count);
+		*count = 0;
+	}
 }
