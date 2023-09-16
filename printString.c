@@ -18,6 +18,7 @@ void print_S(char *string, int count, int len, char *null)
 	int i = 0;
 	char *input = (string != NULL) ? string : null;
 
+
 	len = find_length(input);
 
 	for (i = 0; i < len; i++)
