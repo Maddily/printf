@@ -11,6 +11,7 @@
 void char_format_handler(va_list ap, int *count, int *total, char *buffer)
 {
 	char character = (char)va_arg(ap, int);
+
 	if (character != '\0')
 	{
 		buffer[*count] = character;

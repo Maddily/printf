@@ -28,7 +28,7 @@ void printUpperHex(unsigned int number, int *count, int *total, char *buffer);
 
 /* --------- Characters ----*/
 int our_ptchar(char c);
-void print_S(char *string, int count, int len, char *null);
+void print_S(char *string, int *count, int *total, char *buffer);
 
 /*--- Custom Format Specifiers ---*/
 void custom_b_handler(va_list ap, int *count, int *total, char *buffer);

@@ -1,5 +1,7 @@
 #include "main.h"
 
+char hex_to_ascii(int digit);
+
 /**
  * print_S - prints the string
  * (non printable characters displayed as /x, followed
@@ -7,41 +9,61 @@
  *
  * @string: characters provided
  * @count: number of printed characters
- * @len: length of string provided
- * @null: pointer to "(NULL)"
+ * @total: A pointer to the total number of characters printed
+ * @buffer: A pointer to the buffer holding the characters to be printed
  *
  * Return: nothing
  */
 
-void print_S(char *string, int count, int len, char *null)
+void print_S(char *string, int *count,
+		int *total, char *buffer)
 {
-	int i = 0;
-	char buffer[1024];
-	int bufferIndex = 0;
-	char *input = (string != NULL) ? string : null;
+	int i, len;
 
-	len = find_length(input);
-
-	for (i = 0; i < len; i++)
+	if (string != NULL)
 	{
-		if (input[i] < 32 || input[i] >= 127)
+		len = find_length(string);
+		for (i = 0; i < len; i++)
 		{
-			buffer[bufferIndex++] = '\\';
-			buffer[bufferIndex++] = 'x';
-			buffer[bufferIndex++] = (input[i] >> 4) + '0';
-			buffer[bufferIndex++] = (input[i] & 0xF) + '0';
-			count += 4;
-		}
-		else
-		{
-			buffer[bufferIndex++] = input[i];
-			count += 1;
-		}
+			if (string[i] < 32 || string[i] >= 127)
+			{
+				buffer[*count] = '\\';
+				(*count)++;
+				buffer[*count] = 'x';
+				(*count)++;
+				buffer[*count] = hex_to_ascii(string[i] / 16);
+				(*count)++;
+				buffer[*count] = hex_to_ascii(string[i] % 16);
+				(*count)++;
+			}
+			else
+			{
+				buffer[*count] = string[i];
+				(*count)++;
+			}
 
-		if (bufferIndex == 1024 || i == len - 1)
-		{
-			write(STDOUT_FILENO, buffer, bufferIndex);
-			bufferIndex = 0;
+			if (*count == 1024)
+			{
+				*total += write(1, (const void *)buffer, *count);
+				*count = 0;
+			}
 		}
 	}
+}
+
+/**
+ * hex_to_ascii - Converts a hexadecimal digit to its ASCII
+ * @digit: The hexadecimal digit (0-15)
+ *
+ * Return: The ASCII representation of the hexadecimal digit
+ */
+
+char hex_to_ascii(int digit)
+{
+	if (digit >= 0 && digit <= 9)
+		return (digit + '0');
+	else if (digit >= 10 && digit <= 15)
+		return (digit - 10 + 'A');
+	else
+		return ('\0');
 }

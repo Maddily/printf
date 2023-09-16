@@ -15,8 +15,6 @@ int _printf(const char *format, ...)
 	va_list ap;
 	char *string, buffer[1024];
 	int count = 0, total = 0;
-	int len = 0;
-	char *null = NULL;
 
 	trailing_percent_error(format);
 	if (format != NULL)
@@ -63,8 +61,7 @@ int _printf(const char *format, ...)
 					custom_b_handler(ap, &count, &total, buffer);
 					break;
 				case 'S':
-					print_S(va_arg(ap, char *), count, len, null);
-					format++;
+					print_S(va_arg(ap, char *), &count, &total, buffer);
 					break;
 				default:
 					default_handler(format, &count, &total, buffer);
