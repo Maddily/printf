@@ -58,6 +58,9 @@ int _printf(const char *format, ...)
 					printUpperHex(va_arg(ap, unsigned int), count);
 					format++;
 					break;
+				case 'p':
+					ptr_format_handler(ap, &count, &total, buffer);
+					break;
 				case 'b':
 					custom_b_handler(ap, &count, &total, buffer);
 					break;
