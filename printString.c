@@ -1,21 +1,24 @@
 #include "main.h"
 
+char hex_to_ascii(int digit);
+
 /**
- * print_S - prints the string
+ * custom_S_handler - prints the string
  * (non printable characters displayed as /x, followed
  * by ASCII code value in hexadecimal)
  *
  * @string: characters provided
  * @count: number of printed characters
- * @len: length of string provided
- * @null: pointer to "(NULL)"
+ * @total: A pointer to the total number of characters printed
+ * @buffer: A pointer to the buffer holding the characters to be printed
  *
  * Return: nothing
  */
 
-void print_S(char *string, int count, int len, char *null)
+void custom_S_handler(char *string, int *count,
+		int *total, char *buffer)
 {
-	int i = 0;
+	int i, len;
 
 	if (string != NULL)
 	{
@@ -24,37 +27,43 @@ void print_S(char *string, int count, int len, char *null)
 		{
 			if (string[i] < 32 || string[i] >= 127)
 			{
-				our_ptchar('\\');
-				our_ptchar('x');
-				our_ptchar((string[i] >> 4) + '0');
-				our_ptchar((string[i] & 0xF) + '0');
-				count += 4;
+				buffer[*count] = '\\';
+				(*count)++;
+				buffer[*count] = 'x';
+				(*count)++;
+				buffer[*count] = hex_to_ascii(string[i] / 16);
+				(*count)++;
+				buffer[*count] = hex_to_ascii(string[i] % 16);
+				(*count)++;
 			}
 			else
 			{
-				our_ptchar(string[i]);
-				count += 1;
+				buffer[*count] = string[i];
+				(*count)++;
+			}
+
+			if (*count == 1024)
+			{
+				*total += write(1, (const void *)buffer, *count);
+				*count = 0;
 			}
 		}
 	}
+}
+
+/**
+ * hex_to_ascii - Converts a hexadecimal digit to its ASCII
+ * @digit: The hexadecimal digit (0-15)
+ *
+ * Return: The ASCII representation of the hexadecimal digit
+ */
+
+char hex_to_ascii(int digit)
+{
+	if (digit >= 0 && digit <= 9)
+		return (digit + '0');
+	else if (digit >= 10 && digit <= 15)
+		return (digit - 10 + 'A');
 	else
-	{
-		len = find_length(null);
-		for (i = 0; i < len; i++)
-		{
-			if (null[i] < 32 || null[i] >= 127)
-			{
-				our_ptchar('\\');
-				our_ptchar('x');
-				our_ptchar((null[i] >> 4) + '0');
-				our_ptchar((null[i] & 0xF) + '0');
-				count += 4;
-			}
-			else
-			{
-				our_ptchar(null[i]);
-				count += 1;
-			}
-		}
-	}
+		return ('\0');
 }

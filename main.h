@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <limits.h>
 
+#define BUFFER_SIZE 1024
+
 int _printf(const char *format, ...);
 int find_length(char *s);
 int find_const_length(const char *s);
@@ -19,17 +21,18 @@ void default_handler(const char *format, int *count, int *total, char *buffer);
 
 /* --------- Numbers ------*/
 void int_format_handler(int num, int *count, int *total, char *buffer);
-void u_format_handler(unsigned int number, int count);
-void o_format_handler(unsigned int number, int count);
-void x_format_handler(unsigned int number, int count);
-void printUpperHex(unsigned int number, int count);
+void u_format_handler(unsigned int number, int *count, int *total, char *buffer);
+void o_format_handler(unsigned int number, int *count, int *total, char *buffer);
+void x_format_handler(unsigned int number, int *count, int *total, char *buffer);
+void printUpperHex(unsigned int number, int *count, int *total, char *buffer);
 
 /* --------- Characters ----*/
 int our_ptchar(char c);
-void print_S(char *string, int count, int len, char *null);
 
 /*--- Custom Format Specifiers ---*/
 void custom_b_handler(va_list ap, int *count, int *total, char *buffer);
+void custom_S_handler(char *string, int *count, int *total, char *buffer);
+void custom_reverse_handler(char *string, int *count, int *total, char *buffer);
 
 /*--- Error Messages ---*/
 void trailing_percent_error(const char *format);

@@ -4,24 +4,46 @@
  * o_format_handler - prints an unsigned octal integer
  * @number: unsigned octal
  * @count: number of characters printed
+ * @total: A pointer to the total number of characters printed
+ * @buffer: A pointer to the buffer holding the characters to be printed
  *
  * Return: nothing
  */
 
-void o_format_handler(unsigned int number, int count)
+void o_format_handler(unsigned int number, int *count,
+		int *total, char *buffer)
 {
-	char octal[32];
-	int k;
+	char octal_buffer[32];
+	int k, i = 0;
 
-	count = 0;
+	if (number == 0)
+	{
+		buffer[*count] = '0';
+		(*count)++;
+
+		if (*count == 1024)
+		{
+			total += write(1, (const void *)buffer, *count);
+			*count = 0;
+		}
+		return;
+	}
 
 	while (number != 0)
 	{
-		octal[count++] = '0' + (number % 8);
+		octal_buffer[i++] = '0' + (number % 8);
 		number /= 8;
 	}
-	octal[count] = '\0';
 
-	for (k = count - 1; k >= 0; k--)
-		our_ptchar(octal[k]);
+	for (k = i - 1; k >= 0 && *total < 1024; k--)
+	{
+		buffer[*count] = octal_buffer[k];
+		(*count)++;
+
+		if (*count == 1024)
+		{
+			total += write(1, (const void *)buffer, *count);
+			*count = 0;
+		}
+	}
 }

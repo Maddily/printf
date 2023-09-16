@@ -43,20 +43,16 @@ int _printf(const char *format, ...)
 					int_format_handler(va_arg(ap, int), &count, &total, buffer);
 					break;
 				case 'u':
-					u_format_handler(va_arg(ap, unsigned int), count);
-					format++;
+					u_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
 					break;
 				case 'o':
-					o_format_handler(va_arg(ap, unsigned int), count);
-					format++;
+					o_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
 					break;
 				case 'x':
-					x_format_handler(va_arg(ap, unsigned int), count);
-					format++;
+					x_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
 					break;
 				case 'X':
-					printUpperHex(va_arg(ap, unsigned int), count);
-					format++;
+					printUpperHex(va_arg(ap, unsigned int), &count, &total, buffer);
 					break;
 				case 'p':
 					ptr_format_handler(ap, &count, &total, buffer);
@@ -65,8 +61,7 @@ int _printf(const char *format, ...)
 					custom_b_handler(ap, &count, &total, buffer);
 					break;
 				case 'S':
-					print_S(va_arg(ap, char *), count, len, null);
-					format++;
+					custom_S_handler(va_arg(ap, char *), &count, &total, buffer);
 					break;
 				default:
 					default_handler(format, &count, &total, buffer);

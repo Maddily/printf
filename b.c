@@ -40,7 +40,7 @@ void custom_b_handler(va_list ap, int *count, int *total, char *buffer)
 		{
 			buffer[*count] = bin[j];
 			(*count)++;
-			
+
 			if (*count == 1024)
 			{
 				total += write(1, (const void *)buffer, *count);
