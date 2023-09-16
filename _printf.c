@@ -45,8 +45,7 @@ int _printf(const char *format, ...)
 					int_format_handler(va_arg(ap, int), &count, &total, buffer);
 					break;
 				case 'u':
-					u_format_handler(va_arg(ap, unsigned int), count);
-					format++;
+					u_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
 					break;
 				case 'o':
 					o_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
