@@ -13,6 +13,7 @@ int find_const_length(const char *s);
 
 void char_format_handler(va_list ap, int *count, int *total, char *buffer);
 void str_format_handler(char *string, int *count, int *total, char *buffer);
+void ptr_format_handler(va_list ap, int *count, int *total, char *buffer);
 void percent_handler(int *count, int *total, char *buffer);
 void default_handler(const char *format, int *count, int *total, char *buffer);
 
