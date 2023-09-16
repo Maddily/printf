@@ -28,10 +28,11 @@ void printUpperHex(unsigned int number, int *count, int *total, char *buffer);
 
 /* --------- Characters ----*/
 int our_ptchar(char c);
-void print_S(char *string, int *count, int *total, char *buffer);
 
 /*--- Custom Format Specifiers ---*/
 void custom_b_handler(va_list ap, int *count, int *total, char *buffer);
+void custom_S_handler(char *string, int *count, int *total, char *buffer);
+void custom_reverse_handler(char *string, int *count, int *total, char *buffer);
 
 /*--- Error Messages ---*/
 void trailing_percent_error(const char *format);

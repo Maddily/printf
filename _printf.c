@@ -61,7 +61,7 @@ int _printf(const char *format, ...)
 					custom_b_handler(ap, &count, &total, buffer);
 					break;
 				case 'S':
-					print_S(va_arg(ap, char *), &count, &total, buffer);
+					custom_S_handler(va_arg(ap, char *), &count, &total, buffer);
 					break;
 				default:
 					default_handler(format, &count, &total, buffer);

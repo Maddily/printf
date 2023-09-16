@@ -3,7 +3,7 @@
 char hex_to_ascii(int digit);
 
 /**
- * print_S - prints the string
+ * custom_S_handler - prints the string
  * (non printable characters displayed as /x, followed
  * by ASCII code value in hexadecimal)
  *
@@ -15,7 +15,7 @@ char hex_to_ascii(int digit);
  * Return: nothing
  */
 
-void print_S(char *string, int *count,
+void custom_S_handler(char *string, int *count,
 		int *total, char *buffer)
 {
 	int i, len;
