@@ -16,8 +16,9 @@
 void print_S(char *string, int count, int len, char *null)
 {
 	int i = 0;
+	char buffer[1024];
+	int bufferIndex = 0;
 	char *input = (string != NULL) ? string : null;
-
 
 	len = find_length(input);
 
@@ -25,16 +26,22 @@ void print_S(char *string, int count, int len, char *null)
 	{
 		if (input[i] < 32 || input[i] >= 127)
 		{
-			our_ptchar('\\');
-			our_ptchar('x');
-			our_ptchar((input[i] >> 4) + '0');
-			our_ptchar((input[i] & 0xF) + '0');
+			buffer[bufferIndex++] = '\\';
+			buffer[bufferIndex++] = 'x';
+			buffer[bufferIndex++] = (input[i] >> 4) + '0';
+			buffer[bufferIndex++] = (input[i] & 0xF) + '0';
 			count += 4;
 		}
 		else
 		{
-			our_ptchar(input[i]);
+			buffer[bufferIndex++] = input[i];
 			count += 1;
+		}
+
+		if (bufferIndex == 1024 || i == len - 1)
+		{
+			write(STDOUT_FILENO, buffer, bufferIndex);
+			bufferIndex = 0;
 		}
 	}
 }

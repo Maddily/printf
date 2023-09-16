@@ -11,6 +11,8 @@
 void u_format_handler(unsigned int number, int count)
 {
 	unsigned int temp = number, divisor = 1;
+	char buffer[1024];
+	int buffer_index = 0;
 
 	while (temp / 10 != 0) /*find divisor to get each digit*/
 	{
@@ -20,9 +22,10 @@ void u_format_handler(unsigned int number, int count)
 
 	while (divisor != 0) /*print each digit*/
 	{
-		our_ptchar((number / divisor) + '0');
+		buffer[buffer_index++] = ((number / divisor) + '0');
 		number %= divisor;
 		divisor /= 10;
 		count++;
 	}
+	write(STDOUT_FILENO, buffer, buffer_index);
 }

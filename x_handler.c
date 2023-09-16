@@ -29,6 +29,7 @@ void printUpperHex(unsigned int number, int count)
 		number /= 16;
 	}
 
-	for (i = count - 1; i >= 0; i--) /* print reverse */
+	for (i = count - 1; i >= 0; i--)
 		our_ptchar(hexaNumber[i]);
+
 }

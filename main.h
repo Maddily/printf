@@ -22,7 +22,7 @@ void default_handler(const char *format, int *count, int *total, char *buffer);
 /* --------- Numbers ------*/
 void int_format_handler(int num, int *count, int *total, char *buffer);
 void u_format_handler(unsigned int number, int count);
-void o_format_handler(unsigned int number, int count);
+void o_format_handler(unsigned int number, int *count, int *total , char *buffer);
 void x_format_handler(unsigned int number, int count);
 void printUpperHex(unsigned int number, int count);
 

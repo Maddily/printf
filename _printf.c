@@ -15,6 +15,8 @@ int _printf(const char *format, ...)
 	va_list ap;
 	char *string, buffer[1024];
 	int count = 0, total = 0;
+	int len = 0;
+	char *null = NULL;
 
 	trailing_percent_error(format);
 	if (format != NULL)
@@ -47,8 +49,7 @@ int _printf(const char *format, ...)
 					format++;
 					break;
 				case 'o':
-					o_format_handler(va_arg(ap, unsigned int), count);
-					format++;
+					o_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
 					break;
 				case 'x':
 					x_format_handler(va_arg(ap, unsigned int), count);
