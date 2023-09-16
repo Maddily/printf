@@ -59,6 +59,22 @@ int _printf(const char *format, ...)
 					int_format_handler(va_arg(ap, int), count);
 					format++;
 					break;
+				case 'u':
+					u_format_handler(va_arg(ap, unsigned int), count);
+					format++;
+					break;
+				case 'o':
+					o_format_handler(va_arg(ap, unsigned int), count);
+					format++;
+					break;
+				case 'x':
+					x_format_handler(va_arg(ap, unsigned int), count);
+					format++;
+					break;
+				case 'X':
+					printUpperHex(va_arg(ap, unsigned int), count);
+					format++;
+					break;
 				case 'b':
 					custom_b_handler(ap, count);
 					format++;
