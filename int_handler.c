@@ -35,6 +35,12 @@ void int_format_handler(va_list ap, int *count, int *total, char *buffer)
 		number = -number;
 	}
 
+	if (number == INT_MIN) /* handle INT_MIN separately */
+	{
+		int_buffer[i++] = '8';
+		number = 214748364;
+	}
+
 	while (number != 0) /*store digits in int_buffer */
 	{
 		int_buffer[i++] = (number % 10) + '0';
