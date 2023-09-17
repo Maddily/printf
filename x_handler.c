@@ -2,7 +2,7 @@
 
 /**
  * printUpperHex - prints uppercase hexadecimal integers
- * @number: unsigned int
+ * @ap: Argument pointer
  * @count: current count of printed characters
  * @total: A pointer to the total number of characters printed
  * @buffer: A pointer to the buffer holding the characters to be printed
@@ -10,11 +10,12 @@
  * Return: nothing
  */
 
-void printUpperHex(unsigned int number, int *count,
+void printUpperHex(va_list ap, int *count,
 		int *total, char *buffer)
 {
 	char hex_buffer[32];
 	int i = 0, remainder, h;
+	unsigned int number = va_arg(ap, unsigned int);
 
 	if (number == 0) /*check if o*/
 	{

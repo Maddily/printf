@@ -19,8 +19,10 @@ void char_format_handler(va_list ap, int *count, int *total, char *buffer)
 
 		if (*count == 1024)
 		{
-			total += write(1, (const void *)buffer, *count);
+			*total += write(1, (const void *)buffer, *count);
 			*count = 0;
 		}
 	}
+	else
+		exit(1);
 }

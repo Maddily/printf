@@ -39,6 +39,6 @@ void long_modifier_handler(const char *format, va_list ap, int *count,
 		long_upper_x_handler(u_long, count, total, buffer);
 		break;
 	default:
-		default_handler(format, count, total, buffer);
+		exit(1);
 	}
 }

@@ -23,7 +23,7 @@ void short_o_handler(unsigned short number, int *count,
 
 		if (*count == 1024)
 		{
-			total += write(1, (const void *)buffer, *count);
+			*total += write(1, (const void *)buffer, *count);
 			*count = 0;
 		}
 		return;
@@ -42,7 +42,7 @@ void short_o_handler(unsigned short number, int *count,
 
 		if (*count == 1024)
 		{
-			total += write(1, (const void *)buffer, *count);
+			*total += write(1, (const void *)buffer, *count);
 			*count = 0;
 		}
 	}

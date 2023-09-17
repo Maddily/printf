@@ -13,7 +13,7 @@ void percent_handler(int *count, int *total, char *buffer)
 
 	if (*count == 1024)
 	{
-		total += write(1, (const void *)buffer, *count);
+		*total += write(1, (const void *)buffer, *count);
 		*count = 0;
 	}
 }

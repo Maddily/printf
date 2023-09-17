@@ -7,7 +7,7 @@ char hex_to_ascii(int digit);
  * (non printable characters displayed as /x, followed
  * by ASCII code value in hexadecimal)
  *
- * @string: characters provided
+ * @ap: Argument pointer
  * @count: number of printed characters
  * @total: A pointer to the total number of characters printed
  * @buffer: A pointer to the buffer holding the characters to be printed
@@ -15,10 +15,11 @@ char hex_to_ascii(int digit);
  * Return: nothing
  */
 
-void custom_S_handler(char *string, int *count,
+void custom_S_handler(va_list ap, int *count,
 		int *total, char *buffer)
 {
 	int i, len;
+	char *string = va_arg(ap, char *);
 
 	if (string != NULL)
 	{
