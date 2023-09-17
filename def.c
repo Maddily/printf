@@ -20,7 +20,6 @@ void default_handler(const char *format, int *count, int *total, char *buffer)
 
 	buffer[*count] = *format;
 	(*count)++;
-	format++;
 
 	if (*count == 1024)
 	{

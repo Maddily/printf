@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * u_format_handler - handles 'u' specifier
+ * short_u_handler - handles 'u' specifier
  * @number: unsigned int
  * @count: number of characters printed
  * @total: A pointer to the total number of characters printed
@@ -10,7 +10,7 @@
  * Return: nothing
  */
 
-void u_format_handler(unsigned int number, int *count,
+void short_u_handler(unsigned short number, int *count,
 		int *total, char *buffer)
 {
 	char decimal_buffer[32];

@@ -25,47 +25,60 @@ int _printf(const char *format, ...)
 			if (*format == '%')
 			{
 				format++;
-				switch (*format)
+				if (*format == 'l')
 				{
-				case 'c':
-					char_format_handler
-						(ap, &count, &total, buffer);
-					break;
-				case 's':
-					string = va_arg(ap, char *);
-					str_format_handler(string, &count, &total, buffer);
-					break;
-				case '%':
-					percent_handler(&count, &total, buffer);
-					break;
-				case 'd':
-				case 'i':
-					int_format_handler(va_arg(ap, int), &count, &total, buffer);
-					break;
-				case 'u':
-					u_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
-					break;
-				case 'o':
-					o_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
-					break;
-				case 'x':
-					x_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
-					break;
-				case 'X':
-					printUpperHex(va_arg(ap, unsigned int), &count, &total, buffer);
-					break;
-				case 'p':
-					ptr_format_handler(ap, &count, &total, buffer);
-					break;
-				case 'b':
-					custom_b_handler(ap, &count, &total, buffer);
-					break;
-				case 'S':
-					custom_S_handler(va_arg(ap, char *), &count, &total, buffer);
-					break;
-				default:
-					default_handler(format, &count, &total, buffer);
+					long_modifier_handler(format, ap, &count, &total, buffer);
+					format++;
+				}
+				else if (*format == 'h')
+				{
+					short_modifier_handler(format, ap, &count, &total, buffer);
+					format++;
+				}
+				else
+				{
+					switch (*format)
+					{
+					case 'c':
+						char_format_handler
+							(ap, &count, &total, buffer);
+						break;
+					case 's':
+						string = va_arg(ap, char *);
+						str_format_handler(string, &count, &total, buffer);
+						break;
+					case '%':
+						percent_handler(&count, &total, buffer);
+						break;
+					case 'd':
+					case 'i':
+						int_format_handler(va_arg(ap, int), &count, &total, buffer);
+						break;
+					case 'u':
+						u_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
+						break;
+					case 'o':
+						o_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
+						break;
+					case 'x':
+						x_format_handler(va_arg(ap, unsigned int), &count, &total, buffer);
+						break;
+					case 'X':
+						printUpperHex(va_arg(ap, unsigned int), &count, &total, buffer);
+						break;
+					case 'p':
+						ptr_format_handler(ap, &count, &total, buffer);
+						break;
+					case 'b':
+						custom_b_handler(ap, &count, &total, buffer);
+						break;
+					case 'S':
+						custom_S_handler(va_arg(ap, char *), &count, &total, buffer);
+						break;
+					default:
+						default_handler(format, &count, &total, buffer);
 
+					}
 				}
 			}
 			else
