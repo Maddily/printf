@@ -17,14 +17,7 @@ void long_int_handler(long number, int *count, int *total, char *buffer)
 
 	if (number == 0) /*Add '0' to the buffer*/
 	{
-		buffer[*count] = '0';
-		(*count)++;
-
-		if (*count == 1024)
-		{
-			total += write(1, (const void *)buffer, *count);
-			*count = 0;
-		}
+		handle_zero_number(count, total, buffer);
 		return;
 	}
 	if (number < 0) /*handle negatives*/
@@ -34,7 +27,7 @@ void long_int_handler(long number, int *count, int *total, char *buffer)
 
 		if (*count == 1024)
 		{
-			total += write(1, (const void *)buffer, *count);
+			*total += write(1, (const void *)buffer, *count);
 			*count = 0;
 		}
 		number = -number;
@@ -48,10 +41,10 @@ void long_int_handler(long number, int *count, int *total, char *buffer)
 	{
 		buffer[*count] = int_buffer[j];
 		(*count)++;
-		
+
 		if (*count == 1024)
 		{
-			total += write(1, (const void *)buffer, *count);
+			*total += write(1, (const void *)buffer, *count);
 			*count = 0;
 		}
 	}

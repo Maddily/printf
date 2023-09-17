@@ -39,7 +39,7 @@ void short_modifier_handler(const char *format, va_list ap, int *count,
 		short_upper_x_handler(u_short, count, total, buffer);
 		break;
 	default:
-		default_handler(format, count, total, buffer);
+		exit(1);
 	}
 	format++;
 }

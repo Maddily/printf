@@ -3,28 +3,22 @@
 /**
  * int_format_handler - print signed decimal integers
  * (%i: used for input from scanf, %d: any inputted int)
- * @number: integer to be printed
+ * @ap: Argument pointer
  * @count: A pointer to the current count of printed characters
  * @total: A pointer to the total number of characters printed
  * @buffer: A pointer to the buffer holding the characters to be printed
  * Return: nothing
  */
 
-void int_format_handler(int number, int *count, int *total, char *buffer)
+void int_format_handler(va_list ap, int *count, int *total, char *buffer)
 {
 	char int_buffer[20]; /*store digits of interger*/
 	int j, i = 0;
+	int number = va_arg(ap, int);
 
 	if (number == 0) /*Add '0' to the buffer*/
 	{
-		buffer[*count] = '0';
-		(*count)++;
-
-		if (*count == 1024)
-		{
-			total += write(1, (const void *)buffer, *count);
-			*count = 0;
-		}
+		handle_zero_number(count, total, buffer);
 		return;
 	}
 
@@ -35,7 +29,7 @@ void int_format_handler(int number, int *count, int *total, char *buffer)
 
 		if (*count == 1024)
 		{
-			total += write(1, (const void *)buffer, *count);
+			*total += write(1, (const void *)buffer, *count);
 			*count = 0;
 		}
 		number = -number;
@@ -57,10 +51,10 @@ void int_format_handler(int number, int *count, int *total, char *buffer)
 	{
 		buffer[*count] = int_buffer[j];
 		(*count)++;
-		
+
 		if (*count == 1024)
 		{
-			total += write(1, (const void *)buffer, *count);
+			*total += write(1, (const void *)buffer, *count);
 			*count = 0;
 		}
 	}
