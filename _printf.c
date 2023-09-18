@@ -1,7 +1,3 @@
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
 #include "main.h"
 
 /**
@@ -24,6 +20,7 @@ int _printf(const char *format, ...)
 		{'p', ptr_format_handler},
 		{'b', custom_b_handler},
 		{'S', custom_S_handler},
+		{'r', custom_r_handler},
 		{'R', custom_R_handler},
 		{'0', NULL}
 	};

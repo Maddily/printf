@@ -16,25 +16,36 @@ void custom_R_handler(va_list ap, int *count, int *total, char *buffer)
 
 	if (string == NULL)
 		string = "(null)";
-
 	len = find_length(string);
-
 	for (i = 0; i < len; i++)
 	{
-		for (j = 0; rot1[j] != '\0'; j++)
+		if ((string[i] >= 'A' && string[i] <= 'Z') ||
+				(string[i] >= 'a' && string[i] <= 'z'))
 		{
-			if (string[i] == rot1[j])
+			for (j = 0; rot1[j] != '\0'; j++)
 			{
-				buffer[*count] = rot2[j];
-				(*count)++;
-
-				if (*count == 1024)
+				if (string[i] == rot1[j])
 				{
-					*total += write(1, (const void *)buffer
-							, *count);
-					*count = 0;
+					buffer[*count] = rot2[j];
+					(*count)++;
+					if (*count == 1024)
+					{
+						*total += write(1, (const void *)buffer
+								, *count);
+						*count = 0;
+					}
+						break;
 				}
-					break;
+			}
+		}
+		else
+		{
+			buffer[(*count)++] = string[i];
+			if (*count == 1024)
+			{
+				*total += write(1, (const void *)buffer
+						, *count);
+				*count = 0;
 			}
 		}
 	}
