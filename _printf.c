@@ -24,6 +24,7 @@ int _printf(const char *format, ...)
 		{'p', ptr_format_handler},
 		{'b', custom_b_handler},
 		{'S', custom_S_handler},
+		{'R', custom_R_handler},
 		{'0', NULL}
 	};
 	va_list ap;
