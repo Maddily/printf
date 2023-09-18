@@ -83,6 +83,6 @@ void short_upper_x_handler(unsigned short number, int *count,
 		int *total, char *buffer);
 
 /*--- Error ---*/
-void trailing_percent_error(const char *format);
+int trailing_percent_error(const char *format);
 
 #endif
