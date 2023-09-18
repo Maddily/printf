@@ -7,7 +7,7 @@
 /**
  * _printf - Produces output according to a format
  * @format: A character string composed of zero or more directives
- * Return: The number of characters printed
+ * Return: The number of characters printed, -1 on failure
  * (excluding the null byte used to end output to strings)
  */
 int _printf(const char *format, ...)
@@ -32,15 +32,15 @@ int _printf(const char *format, ...)
 	fmt_spec *spec = specs;
 
 	trailing_percent_error(format);
-	if (format == NULL)
-		exit(1);
+	if (format == NULL || trailing_percent_error(format) == -1)
+		return (-1);
 	va_start(ap, format);
 	/*Handle format specifiers, add to the buffer and print*/
 	ret = handle_all(format, ap, &count, &total, buffer, spec);
 	if (ret == 1)
 	{
 		va_end(ap);
-		exit(1);
+		return (-1);
 	}
 	va_end(ap);
 	return (total);
