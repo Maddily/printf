@@ -12,20 +12,18 @@
 
 void flag_handler(const char* format, va_list ap, int* count, int* total, char* buffer)
 {
-	int i;
-
-	FlagHandler flagHandlers[256] = { NULL };
-
-	flagHandlers[' '] = handle_space_flag;
-	flagHandlers['+'] = handle_plus_flag;
-	flagHandlers['#'] = handle_hash_flag;
-
-	for (i = 0; format[i] != '\0'; i++)
+	switch (*format)
 	{
-		FlagHandler handler = flagHandlers[(unsigned char)format[i]];
-		if (handler != NULL)
-		{
-			handler(ap, count, total, buffer);
-		}
+		case '+':
+			handle_plus_flag(ap, count, total, buffer);
+			break;
+		case ' ':
+			handle_space_flag(ap, count, total, buffer);
+			break;
+		case '#':
+			handle_hash_flag(ap, count, total, buffer);
+			break;
+		default:
+			break;
 	}
 }
