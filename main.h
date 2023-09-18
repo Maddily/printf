@@ -57,6 +57,7 @@ int our_ptchar(char c);
 /*--- Custom Format Specifiers ---*/
 void custom_b_handler(va_list ap, int *count, int *total, char *buffer);
 void custom_S_handler(va_list ap, int *count, int *total, char *buffer);
+void custom_R_handler(va_list ap, int *count, int *total, char *buffer);
 
 /*--- Length Modifiers ---*/
 void long_modifier_handler(const char *format, va_list ap, int *count,
