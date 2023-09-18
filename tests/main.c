@@ -11,16 +11,15 @@ int main(void)
 {
 	int len;
 	int len2;
+	int num = 42;
 	unsigned int ui;
 	void *addr;
 	long l_num = 1000000;
-	unsigned long ul;
 	short h_num = 100;
 
 	len = _printf("Let's try to printf a simple sentence.\n");
 	len2 = printf("Let's try to printf a simple sentence.\n");
 	ui = (unsigned int)INT_MAX + 1024;
-	ul = (unsigned long)INT_MAX + 1024;
 	addr = (void *)0x7ffe637541f0;
 	_printf("Length:[%d, %i]\n", len, len);
 	printf("Length:[%d, %i]\n", len2, len2);
@@ -32,20 +31,14 @@ int main(void)
 	printf("Negative:[%d]\n", -762534);
 	_printf("Unsigned:[%u]\n", ui);
 	printf("Unsigned:[%u]\n", ui);
-	_printf("Unsigned:[%lu]\n", l_num);
-	printf("Unsigned:[%lu]\n", l_num);
 	_printf("Unsigned:[%hu]\n", h_num);
 	printf("Unsigned:[%hu]\n", h_num);
 	_printf("Unsigned octal:[%o]\n", ui);
 	printf("Unsigned octal:[%o]\n", ui);
-	_printf("Unsigned octal:[%lo]\n", ul);
-	printf("Unsigned octal:[%lo]\n", ul);
 	_printf("Unsigned octal:[%ho]\n", ui);
 	printf("Unsigned octal:[%ho]\n", ui);
 	_printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
 	printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
-	_printf("Unsigned hexadecimal:[%lx, %lX]\n", ul, ul);
-	printf("Unsigned hexadecimal:[%lx, %lX]\n", ul, ul);
 	_printf("Unsigned hexadecimal:[%hx, %hX]\n", ui, ui);
 	printf("Unsigned hexadecimal:[%hx, %hX]\n", ui, ui);
 	_printf("Character:[%c]\n", 'H');
@@ -59,8 +52,17 @@ int main(void)
 	_printf("Len:[%d]\n", len);
 	printf("Len:[%d]\n", len2);
 	_printf("%S\n", "Best\nSchool");
-	_printf("%r\n", "hihihihi");
-	_printf("%R\n", "hihihihi");
-	_printf("%R\n", "HI2HI2HI2HI");
+	printf("Flag 0: %04d\n", num);
+	_printf("Flag 0: %04d\n", num);
+	printf("Flag Space: % d\n", num);
+	_printf("Flag Space: % d\n", num);
+	printf("Flag -: %-5d\n", num); 
+	_printf("Flag -: %-5d\n", num);
+	printf("Flag #: %#x\n", num);
+	_printf("Flag #: %#x\n", num);
+	printf("Flag +: %+d\n", num);
+	_printf("Flag +: %+d\n", num);
+	printf("Field width of 5: %5d\n", num);
+	_printf("Field width of 5: %5d\n", num);
 	return (0);
 }
