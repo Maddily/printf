@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 	va_start(ap, format);
 	/*Handle format specifiers, add to the buffer and print*/
 	ret = handle_all(format, ap, &count, &total, buffer, spec);
-	if (ret == 1)
+	if (ret == -1)
 	{
 		va_end(ap);
 		return (-1);
