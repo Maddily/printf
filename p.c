@@ -15,10 +15,12 @@ void ptr_format_handler(va_list ap, int *count, int *total, char *buffer)
 	int i = 0, j;
 	unsigned long num = (unsigned long)ptr;
 
+	/* if (ptr == NULL) */
+	/* { */
+	/*	hexa_buffer[i++] = '0'; */
+	/* } */
 	if (ptr == NULL)
-	{
-		hexa_buffer[i++] = '0';
-	}
+		write(1, "(nil)", 5);
 	else
 	{
 		while (num != 0)
