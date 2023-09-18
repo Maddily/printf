@@ -13,6 +13,13 @@
 #define HASH_FLAG
 #define ZERO_FLAG
 
+typedef struct flags
+{
+	int plus;
+	int space;
+	int hash;
+} FlagCharacters;
+
 /**
  * struct fmt_specifier - A structure of a specifier
  * and its corresponding function pointer
@@ -24,8 +31,6 @@ typedef struct fmt_specifier
 	char spec;
 	void (*hndlr)(va_list ap, int *count, int *total, char *buffer);
 } fmt_spec;
-
-typedef void (*FlagHandler)(va_list, int*, int*, char*);
 
 int _printf(const char *format, ...);
 int find_length(char *s);
@@ -92,9 +97,5 @@ void short_upper_x_handler(unsigned short number, int *count,
 int trailing_percent_error(const char *format);
 
 /*--- Flags -----*/
-void flag_handler(const char* format, va_list ap, int* count, int* total, char* buffer);
-void handle_space_flag(va_list ap, int* count, int* total, char* buffer);
-void handle_plus_flag(va_list ap, int* count, int* total, char* buffer);
-void handle_hash_flag(va_list ap, int* count, int* total, char* buffer);
 
 #endif

@@ -22,11 +22,6 @@ int handle_all(const char *format, va_list ap, int *count, int *total,
 			format++;
 			if (*format == '%')
 				percent_handler(count, total, buffer);
-			else if (*format == '+' || *format == ' ' || *format == '#')
-			{
-				flag_handler(format, ap, count, total, buffer);
-				format++;
-			}
 			else if (*format == 'l')
 			{
 				long_modifier_handler(format, ap, count,
