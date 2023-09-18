@@ -25,8 +25,6 @@ typedef struct fmt_specifier
 	void (*hndlr)(va_list ap, int *count, int *total, char *buffer);
 } fmt_spec;
 
-typedef void (*FlagHandler)(va_list, int*, int*, char*);
-
 int _printf(const char *format, ...);
 int find_length(char *s);
 int find_const_length(const char *s);
@@ -92,9 +90,5 @@ void short_upper_x_handler(unsigned short number, int *count,
 int trailing_percent_error(const char *format);
 
 /*--- Flags -----*/
-void flag_handler(const char* format, va_list ap, int* count, int* total, char* buffer);
-void handle_space_flag(va_list ap, int* count, int* total, char* buffer);
-void handle_plus_flag(va_list ap, int* count, int* total, char* buffer);
-void handle_hash_flag(va_list ap, int* count, int* total, char* buffer);
 
 #endif
