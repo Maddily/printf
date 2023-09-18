@@ -13,7 +13,13 @@
 #define HASH_FLAG
 #define ZERO_FLAG
 
-typedef struct
+/**
+ * struct fmt_specifier - A structure of a specifier
+ * and its corresponding function pointer
+ * @spec: A specifier (s, c, i, d,...)
+ * @hndlr: A pointer to a function that doesn't return a value
+ */
+typedef struct fmt_specifier
 {
 	char spec;
 	void (*hndlr)(va_list ap, int *count, int *total, char *buffer);
@@ -24,16 +30,15 @@ int find_length(char *s);
 int find_const_length(const char *s);
 char hex_to_ascii(int digit);
 void fill_buffer(const char *format, int *count, int *total, char *buffer);
-void handle_all(const char *format, va_list ap, int *count, int *total,
+int handle_all(const char *format, va_list ap, int *count, int *total,
 		char *buffer, fmt_spec *spec);
-void handle_struct(const char *format, fmt_spec *spec, va_list ap, int *count,
+int handle_struct(const char *format, fmt_spec *spec, va_list ap, int *count,
 		int *total, char *buffer);
 
 void char_format_handler(va_list ap, int *count, int *total, char *buffer);
 void str_format_handler(va_list ap, int *count, int *total, char *buffer);
 void ptr_format_handler(va_list ap, int *count, int *total, char *buffer);
 void percent_handler(int *count, int *total, char *buffer);
-void default_handler(const char *format, int *count, int *total, char *buffer);
 void handle_zero_number(int *count, int *total, char *buffer);
 
 /* --------- Numbers ------*/
@@ -77,7 +82,7 @@ void short_x_handler(unsigned short number, int *count,
 void short_upper_x_handler(unsigned short number, int *count,
 		int *total, char *buffer);
 
-/*--- Error Messages ---*/
+/*--- Error ---*/
 void trailing_percent_error(const char *format);
 
 #endif

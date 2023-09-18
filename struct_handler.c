@@ -8,8 +8,9 @@
  * @count: A pointer to the number of characters added to the buffer
  * @total: A pointer to the number of characters printed
  * @buffer: A pointer to the buffer storing characters
+ * Return: 0 on success, 1 on failure
  */
-void handle_struct(const char *format, fmt_spec *spec, va_list ap, int *count,
+int handle_struct(const char *format, fmt_spec *spec, va_list ap, int *count,
 		int *total, char *buffer)
 {
 	while (spec->spec != '0')
@@ -17,11 +18,9 @@ void handle_struct(const char *format, fmt_spec *spec, va_list ap, int *count,
 		if (spec->spec == *format)
 		{
 			spec->hndlr(ap, count, total, buffer);
-			break;
+			return (0);
 		}
 		spec++;
 	}
-	if (spec->spec == '0')
-		exit(1);
-	format++;
+	return (1);
 }
