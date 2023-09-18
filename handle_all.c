@@ -38,7 +38,7 @@ int handle_all(const char *format, va_list ap, int *count, int *total,
 			{
 				ret = handle_struct(format, spec, ap, count,
 							total, buffer);
-				if (ret == 1)
+				if (ret == -1)
 					return (-1);
 			}
 		}
@@ -46,7 +46,7 @@ int handle_all(const char *format, va_list ap, int *count, int *total,
 			fill_buffer(format, count, total, buffer);
 		format++;
 	}
-	if (ret == 1)
+	if (ret == -1)
 		return (-1);
 	if (*count > 0)
 		*total += write(1, (const void *)buffer, *count);
