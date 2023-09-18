@@ -8,10 +8,13 @@
  * @total: A pointer to the number of characters printed
  * @buffer: A pointer to the buffer storing characters
  * @spec: A pointer to an array of structures
+ * Return: 0 on success, 1 on failure
  */
-void handle_all(const char *format, va_list ap, int *count, int *total,
+int handle_all(const char *format, va_list ap, int *count, int *total,
 		char *buffer, fmt_spec *spec)
 {
+	int ret;
+
 	while (*format)
 	{
 		if (*format == '%')
@@ -33,14 +36,19 @@ void handle_all(const char *format, va_list ap, int *count, int *total,
 			}
 			else
 			{
-				handle_struct(format, spec, ap, count, total,
-						buffer);
+				ret = handle_struct(format, spec, ap, count,
+							total, buffer);
+				if (ret == 1)
+					return (1);
 			}
 		}
 		else
 			fill_buffer(format, count, total, buffer);
 		format++;
 	}
+	if (ret == 1)
+		return (1);
 	if (*count > 0)
 		*total += write(1, (const void *)buffer, *count);
+	return (0);
 }

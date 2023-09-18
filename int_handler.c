@@ -21,12 +21,10 @@ void int_format_handler(va_list ap, int *count, int *total, char *buffer)
 		handle_zero_number(count, total, buffer);
 		return;
 	}
-
 	if (number < 0) /*handle negatives*/
 	{
 		buffer[*count] = '-';
 		(*count)++;
-
 		if (*count == 1024)
 		{
 			*total += write(1, (const void *)buffer, *count);
@@ -34,24 +32,20 @@ void int_format_handler(va_list ap, int *count, int *total, char *buffer)
 		}
 		number = -number;
 	}
-
 	if (number == INT_MIN) /* handle INT_MIN separately */
 	{
 		int_buffer[i++] = '8';
 		number = 214748364;
 	}
-
 	while (number != 0) /*store digits in int_buffer */
 	{
 		int_buffer[i++] = (number % 10) + '0';
 		number /= 10;
 	}
-
 	for (j = i - 1; j >= 0; j--) /*Add int_buffer's contents to buffer*/
 	{
 		buffer[*count] = int_buffer[j];
 		(*count)++;
-
 		if (*count == 1024)
 		{
 			*total += write(1, (const void *)buffer, *count);

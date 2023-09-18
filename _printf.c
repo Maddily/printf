@@ -28,18 +28,20 @@ int _printf(const char *format, ...)
 	};
 	va_list ap;
 	char buffer[1024];
-	int count = 0, total = 0;
+	int count = 0, total = 0, ret;
 	fmt_spec *spec = specs;
 
 	trailing_percent_error(format);
-	if (format != NULL)
+	if (format == NULL)
+		exit(1);
+	va_start(ap, format);
+	/*Handle format specifiers, add to the buffer and print*/
+	ret = handle_all(format, ap, &count, &total, buffer, spec);
+	if (ret == 1)
 	{
-		va_start(ap, format);
-		/*Handle format specifiers, add to the buffer and print*/
-		handle_all(format, ap, &count, &total, buffer, spec);
+		va_end(ap);
+		exit(1);
 	}
-	else
-		return (1);
 	va_end(ap);
 	return (total);
 }
