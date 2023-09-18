@@ -1,5 +1,5 @@
-#ifndef HEADER_H
-#define HEADER_H
+#ifndef MAIN_H
+#define MAIN_H
 
 #include <stdarg.h>
 #include <unistd.h>
@@ -57,6 +57,7 @@ int our_ptchar(char c);
 /*--- Custom Format Specifiers ---*/
 void custom_b_handler(va_list ap, int *count, int *total, char *buffer);
 void custom_S_handler(va_list ap, int *count, int *total, char *buffer);
+void custom_r_handler(va_list ap, int *count, int *total, char *buffer);
 void custom_R_handler(va_list ap, int *count, int *total, char *buffer);
 
 /*--- Length Modifiers ---*/

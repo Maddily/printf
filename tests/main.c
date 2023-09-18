@@ -59,6 +59,8 @@ int main(void)
 	_printf("Len:[%d]\n", len);
 	printf("Len:[%d]\n", len2);
 	_printf("%S\n", "Best\nSchool");
-	_printf("%R\n", "Hi");
+	_printf("%r\n", "hihihihi");
+	_printf("%R\n", "hihihihi");
+	_printf("%R\n", "HI2HI2HI2HI");
 	return (0);
 }
