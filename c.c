@@ -12,17 +12,12 @@ void char_format_handler(va_list ap, int *count, int *total, char *buffer)
 {
 	char character = (char)va_arg(ap, int);
 
-	if (character != '\0')
-	{
-		buffer[*count] = character;
-		(*count)++;
+	buffer[*count] = character;
+	(*count)++;
 
-		if (*count == 1024)
-		{
-			*total += write(1, (const void *)buffer, *count);
-			*count = 0;
-		}
+	if (*count == 1024)
+	{
+		*total += write(1, (const void *)buffer, *count);
+		*count = 0;
 	}
-	else
-		exit(1);
 }

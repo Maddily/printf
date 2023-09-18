@@ -14,21 +14,19 @@ void str_format_handler(va_list ap, int *count, int *total, char *buffer)
 	int i, len;
 	char *string = va_arg(ap, char *);
 
-	if (string != NULL)
-	{
-		len = find_length(string);
-		for (i = 0; i < len; i++)
-		{
-			buffer[*count] = string[i];
-			(*count)++;
+	if (string == NULL)
+		string = "(null)";
 
-			if (*count == 1024)
-			{
-				*total += write(1, (const void *)buffer, *count);
-				*count = 0;
-			}
+	len = find_length(string);
+	for (i = 0; i < len; i++)
+	{
+		buffer[*count] = string[i];
+		(*count)++;
+
+		if (*count == 1024)
+		{
+			*total += write(1, (const void *)buffer, *count);
+			*count = 0;
 		}
 	}
-	else
-		exit(1);
 }
