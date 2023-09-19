@@ -53,7 +53,7 @@ void printUpperHex(va_list ap, int *count, int *total, char *buffer);
 
 /* --------- Characters ----*/
 int our_ptchar(char c);
-char* intToString(int num);
+char *intToString(int num);
 
 
 /*--- Custom Format Specifiers ---*/

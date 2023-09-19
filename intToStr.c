@@ -2,12 +2,12 @@
 #include <stdlib.h>
 
 /**
- * intToStr - converts integer to string
+ * intToString - converts integer to string
  * @num: number
  * Return: string
  */
 
-char* intToString(int num)
+char *intToString(int num)
 {
 	int length = 0;
 	int temp = num;
