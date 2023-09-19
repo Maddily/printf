@@ -93,5 +93,7 @@ int f_plus_handler(const char *format, va_list ap, int *count,
 		int *total, char *buffer);
 int f_space_handler(const char *format, va_list ap, int *count,
 		int *total, char *buffer);
+int f_hash_handler(const char *format, va_list ap, int *count,
+		int *total, char *buffer);
 
 #endif

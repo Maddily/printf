@@ -34,6 +34,12 @@ int handle_all(const char *format, va_list ap, int *count, int *total,
 						total, buffer);
 				format++;
 			}
+			else if (*format == '#')
+			{
+				f_hash_handler(format, ap, count,
+						total, buffer);
+				format++;
+			}
 			else if (*format == 'l')
 			{
 				long_modifier_handler(format, ap, count,

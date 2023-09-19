@@ -5,11 +5,12 @@
  * my_itoa - converts digit to character
  * @buffer: buffer
  * @num: digit to be converted
- *
+ * @format: format
+ * @base: base of digit
  * Return: always 0
  */
 
-int my_itoa(const char *format, char* buffer, int num, int base)
+int my_itoa(const char *format, char *buffer, int num, int base)
 {
 	int digit, len, temp;
 	int original_len;
@@ -54,7 +55,7 @@ int my_itoa(const char *format, char* buffer, int num, int base)
 			if (format[1] == 'X')
 				buffer[len - 1] = 'A' + digit - 10;
 			else
-				buffer[len - 1] = 'a' + digit - 10; 
+				buffer[len - 1] = 'a' + digit - 10;
 		}
 		else
 		{
