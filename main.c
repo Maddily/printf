@@ -81,7 +81,7 @@ int main(void)
 	printf("Hexadecimal number the # flag: %#x\n", "255");
 	_printf("Hexadecimal number the # flag: %#x\n", "255");
 	printf("Hexadecimal number the # flag: %#X\n", "255");
-	_printf("Hexadecimal number the # flag: %#X\n", "255");
+	_printf("Hexadecimal number the # flag: %#X\n", "255");                
 	printf("Flag +: %+d\n", num);
 	_printf("Flag +: %+d\n", num);
 	printf("Flag +: %+i\n", num);

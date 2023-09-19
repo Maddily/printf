@@ -153,7 +153,6 @@ int f_hash_handler(const char *format, va_list ap, int *count,
 
 		(*count) += len;
 		(*total) += len;
-		printf("Buffer length: %d\n", len);
 	}
 	else
 	{
@@ -162,6 +161,5 @@ int f_hash_handler(const char *format, va_list ap, int *count,
 
 
 	buffer[*count] = '\0';
-	printf("Buffer length ends: %d\n", len);
 	return (0);
 }
