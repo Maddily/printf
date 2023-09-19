@@ -38,8 +38,10 @@ int handle_all(const char *format, va_list ap, int *count, int *total,
 				if (*format >= '1' && *format <= '9')
 				{
 					while (*format >= '0' && *format <= '9')
+					{
 						field_width = (field_width * 10) + (*format - '0');
-					format++;
+						format++;
+					}
 				}
 				else if (*format == '*')
 				{
