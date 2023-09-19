@@ -8,10 +8,6 @@
 #include <limits.h>
 
 #define BUFFER_SIZE 1024
-#define PLUS_FLAG
-#define SPACE_FLAG
-#define HASH_FLAG
-#define ZERO_FLAG
 
 #define UNUSED(x) (void)(x)
 
@@ -64,10 +60,9 @@ void x_format_handler(va_list ap, int *count, int *total, char *buffer,
 void printUpperHex(va_list ap, int *count, int *total, char *buffer,
 		int field_width);
 
-/* --------- Characters ----*/
-int our_ptchar(char c);
-char *intToString(int num);
-
+/* --------- Helper functions ----*/
+int my_itoa(const char *format, char *buffer, int num, int base);
+int our_putchar(char c);
 
 /*--- Custom Format Specifiers ---*/
 void custom_b_handler(va_list ap, int *count, int *total, char *buffer,
@@ -107,5 +102,15 @@ void short_upper_x_handler(unsigned short number, int *count,
 int trailing_percent_error(const char *format);
 
 /*--- Flags -----*/
+int f_plus_handler(const char *format, va_list ap, int *count,
+		int *total, char *buffer);
+int f_space_handler(const char *format, va_list ap, int *count,
+		int *total, char *buffer);
+int f_hash_handler(const char *format, va_list ap, int *count,
+		int *total, char *buffer);
+int f_minus_handler(const char *format, va_list ap, int *count,
+		int *total, char *buffer);
+int f_zero_handler(const char *format, va_list ap, int *count,
+		int *total, char *buffer);
 
 #endif
