@@ -2,17 +2,17 @@
 #include <stdlib.h>
 
 /**
- * intToStr - converts integer to string
+ * intToString - converts integer to string
  * @num: number
  * Return: string
  */
 
-char* intToString(int num)
+char *intToString(int num)
 {
 	int length = 0;
 	int temp = num;
 	int digit;
-	char* str;
+	char *str;
 	int index = 0;
 
 	while (temp != 0)
@@ -21,7 +21,7 @@ char* intToString(int num)
 		temp /= 10;
 	}
 
-	str = (char*)malloc((length + 1) * sizeof(char));
+	str = (char *)malloc((length + 1) * sizeof(char));
 
 	while (num != 0)
 	{

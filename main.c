@@ -52,17 +52,5 @@ int main(void)
 	_printf("Len:[%d]\n", len);
 	printf("Len:[%d]\n", len2);
 	_printf("%S\n", "Best\nSchool");
-	printf("Flag 0: %04d\n", num);
-	_printf("Flag 0: %04d\n", num);
-	printf("Flag Space: % d\n", num);
-	_printf("Flag Space: % d\n", num);
-	printf("Flag -: %-5d\n", num); 
-	_printf("Flag -: %-5d\n", num);
-	printf("Flag #: %#x\n", num);
-	_printf("Flag #: %#x\n", num);
-	printf("Flag +: %+d\n", num);
-	_printf("Flag +: %+d\n", num);
-	printf("Field width of 5: %5d\n", num);
-	_printf("Field width of 5: %5d\n", num);
 	return (0);
 }
