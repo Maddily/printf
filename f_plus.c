@@ -159,6 +159,8 @@ int f_hash_handler(const char *format, va_list ap, int *count,
 		return (1);
 	}
 
+	if (*count >= 1024 - 1)
+		return (1);
 
 	buffer[*count] = '\0';
 	return (0);
