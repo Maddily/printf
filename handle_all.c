@@ -64,22 +64,10 @@ int handle_all(const char *format, va_list ap, int *count, int *total,
 	}
 	if (ret == -1)
 		return (-1);
-	print_remaining(count, total, buffer);
-	return (0);
-}
-
-/**
- * print_remaining - Prints the remaining characters in the buffer
- * @count: A pointer to the number of characters added to the buffer
- * @total: A pointer to the number of characters printed
- * @buffer: A pointer to the buffer storing characters
- */
-void print_remaining(int *count, int *total, char *buffer)
-{
 	if (*count > 0)
 	{
 		*total += write(1, (const void *)buffer, *count);
 		*count = 0;
 	}
+	return (0);
 }
-
