@@ -76,6 +76,12 @@ int main(void)
 	_printf("Flag -: %-5d\n", num);
 	printf("Flag #: %#x\n", num);
 	_printf("Flag #: %#x\n", num);
+	printf("Octal number with the # flag: %#o\n", "63");
+	_printf("Octal number with the # flag: %#o\n", "63");
+	printf("Hexadecimal number the # flag: %#x\n", "255");
+	_printf("Hexadecimal number the # flag: %#x\n", "255");
+	printf("Hexadecimal number the # flag: %#X\n", "255");
+	_printf("Hexadecimal number the # flag: %#X\n", "255");
 	printf("Flag +: %+d\n", num);
 	_printf("Flag +: %+d\n", num);
 	printf("Flag +: %+i\n", num);

@@ -16,7 +16,6 @@ int f_plus_handler(const char *format, va_list ap, int *count,
 		int *total, char *buffer)
 {
 	int num, len;
-	(void)format;
 
 	num = va_arg(ap, int);
 	len = 0;
@@ -57,7 +56,6 @@ int f_space_handler(const char *format, va_list ap, int *count,
 		int *total, char *buffer)
 {
 	int num, len;
-	(void)format;
 
 	num = va_arg(ap, int);
 	len = 0;
@@ -107,3 +105,63 @@ int f_space_handler(const char *format, va_list ap, int *count,
 	return (0);
 }
 
+/**
+ * f_hash_handler - handles Flag ['#'}
+ * only works for %o %x %X
+ * @format: A pointer to the format string
+ * @ap: Argument pointer
+ * @count: A pointer to the count of characters in buffer
+ * @buffer: The total number of characters printed
+ * @total: The total number of characters printed
+ *
+ * Return: 0 on success, on failure 1
+ */
+
+int f_hash_handler(const char *format, va_list ap, int *count,
+		int *total, char *buffer)
+{
+	int num, len;
+
+	num = va_arg(ap, int);
+	len = 0;
+
+	if (format[1] == 'o' || format[1] == 'x' || format[1] == 'X')
+	{
+		if (num != 0)
+		{
+			if (format[1] == 'o')
+			{
+				buffer[len++] = '0';
+				my_itoa(format, (buffer + len), num, 8);
+				len += find_length(buffer + len);
+			}
+			else if (format[1] == 'x')
+			{
+				buffer[len++] = '0';
+				buffer[len++] = 'x';
+				my_itoa(format, (buffer + len), num, 16);
+				len = find_length(buffer + len);
+			}
+			else
+			{
+				buffer[len++] = '0';
+				buffer[len++] = 'X';
+				my_itoa(format, (buffer + len), num, 16);
+				len = find_length(buffer + len);
+			}
+		}
+
+		(*count) += len;
+		(*total) += len;
+		printf("Buffer length: %d\n", len);
+	}
+	else
+	{
+		return (1);
+	}
+
+
+	buffer[*count] = '\0';
+	printf("Buffer length ends: %d\n", len);
+	return (0);
+}
