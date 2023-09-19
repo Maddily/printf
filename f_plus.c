@@ -127,13 +127,13 @@ int f_hash_handler(const char *format, va_list ap, int *count,
 
 	if (format[1] == 'o' || format[1] == 'x' || format[1] == 'X')
 	{
-		if (num != 0)
+		if (num != 0 && num > 0)
 		{
 			if (format[1] == 'o')
 			{
 				buffer[len++] = '0';
-				my_itoa(format, (buffer + len), num, 8);
-				len += find_length(buffer + len);
+				my_itoa(format, (len + buffer), num, 8);
+				len += find_length(len + buffer);
 			}
 			else if (format[1] == 'x')
 			{
