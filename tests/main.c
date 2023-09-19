@@ -90,5 +90,9 @@ int main(void)
 	printf("Address:[%15p]\n", addr);
 	_printf("Address:[%*p]\n", 15, addr);
 	printf("Address:[%*p]\n", 15, addr);
+	_printf("String:[%.4s]\n", "I am a string !");
+	printf("String:[%.4s]\n", "I am a string !");
+	_printf("String:[%.*s]\n", 4, "I am a string !");
+	printf("String:[%.*s]\n", 4, "I am a string !");
 	return (0);
 }

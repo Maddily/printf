@@ -40,6 +40,8 @@ int handle_struct(const char *format, fmt_spec *spec, va_list ap, int *count,
 void buffer_status_handler(int *count, int *total, char *buffer);
 void field_width_handler(int field_width, char *buffer, int *count,
 		int *total);
+int precision_handler(const char *format, int precision, va_list ap,
+		char *buffer, int *count, int *total);
 
 void char_format_handler(va_list ap, int *count, int *total, char *buffer,
 		int field_width);
