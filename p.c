@@ -6,8 +6,10 @@
  * @count: A pointer to the number of printed characters
  * @total: A pointer to the total number of characters printed
  * @buffer: A pointer to the buffer holding the characters to be printed
+ * @field_width: The field width
  */
-void ptr_format_handler(va_list ap, int *count, int *total, char *buffer)
+void ptr_format_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width)
 {
 	void *ptr = va_arg(ap, void *);
 	char hexa_chars[] = "0123456789abcdef";
@@ -15,12 +17,10 @@ void ptr_format_handler(va_list ap, int *count, int *total, char *buffer)
 	int i = 0, j;
 	unsigned long num = (unsigned long)ptr;
 
-	/* if (ptr == NULL) */
-	/* { */
-	/*	hexa_buffer[i++] = '0'; */
-	/* } */
 	if (ptr == NULL)
-		write(1, "(nil)", 5);
+	{
+		hexa_buffer[i++] = '0';
+	}
 	else
 	{
 		while (num != 0)
@@ -31,17 +31,16 @@ void ptr_format_handler(va_list ap, int *count, int *total, char *buffer)
 	}
 
 	hexa_buffer[i++] = 'x';
-	hexa_buffer[i] = '0';
+	hexa_buffer[i++] = '0';
 
-	for (j = i; j >= 0; j--)
+	if (field_width > 0)
 	{
-		buffer[*count] = hexa_buffer[j];
-		(*count)++;
-
-		if (*count == 1024)
-		{
-			*total += write(1, (const void *)buffer, *count);
-			*count = 0;
-		}
+		field_width -= i;
+		field_width_handler(field_width, buffer, count, total);
+	}
+	for (j = i - 1; j >= 0; j--)
+	{
+		buffer[(*count)++] = hexa_buffer[j];
+		buffer_status_handler(count, total, buffer);
 	}
 }
