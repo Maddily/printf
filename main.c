@@ -9,6 +9,7 @@
 
 int main(void)
 {
+	int c = 0;
 	int len;
 	int len2;
 	int num = 42;
@@ -94,5 +95,37 @@ int main(void)
 	printf("String:[%.4s]\n", "I am a string !");
 	_printf("String:[%.*s]\n", 4, "I am a string !");
 	printf("String:[%.*s]\n", 4, "I am a string !");
+	printf("Flag Space: % d\n", num);
+	_printf("Flag Space: % d\n", num);
+	printf("Flag Space: % i\n", num);
+	_printf("Flag Space: % i\n", num);
+	printf("Flag Space: % o\n", num);
+	_printf("Flag Space: % o\n", num);
+	printf("Flag Space: % d\n", -num);
+	_printf("Flag Space: % d\n", -num);
+	printf("Flag Space: % u\n", num);
+	_printf("Flag Space: % u\n", num);
+	printf("Flag Space: % x\n", num);
+	_printf("Flag Space: % x\n", num);
+	printf("Flag Space: % X\n", num);
+	_printf("Flag Space: % X\n", num);
+	printf("Flag Space:  %u\n", num);
+	_printf("Flag Space:  %u\n", num);
+	printf("Flag +: %+d\n", num);
+	_printf("Flag +: %+d\n", num);
+	printf("Flag +: %+i\n", num);
+	_printf("Flag +: %+i\n", num);
+	printf("flag +: %d\n", "-12");
+	_printf("flag +: %d\n", "-12");
+	printf("flag +: %d\n", c);
+	_printf("flag +: %d\n", c);
+	printf("Flag #: %#x\n", num);
+	_printf("Flag #: %#x\n", num);
+	printf("Octal number with the # flag: %#o\n", "63");
+	_printf("Octal number with the # flag: %#o\n", "63");
+	printf("Hexadecimal number the # flag: %#x\n", "255");
+	_printf("Hexadecimal number the # flag: %#x\n", "255");
+	printf("Hexadecimal number the # flag: %#X\n", "255");
+	_printf("Hexadecimal number the # flag: %#X\n", "255");
 	return (0);
 }
