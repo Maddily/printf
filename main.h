@@ -51,10 +51,9 @@ void x_format_handler(va_list ap, int *count,
 		int *total, char *buffer);
 void printUpperHex(va_list ap, int *count, int *total, char *buffer);
 
-/* --------- Characters ----*/
-int our_ptchar(char c);
-char *intToString(int num);
-
+/* --------- Cconversions ----*/
+int my_itoa(char* buffer, int num);
+int our_putchar(char c);
 
 /*--- Custom Format Specifiers ---*/
 void custom_b_handler(va_list ap, int *count, int *total, char *buffer);
@@ -90,5 +89,6 @@ void short_upper_x_handler(unsigned short number, int *count,
 int trailing_percent_error(const char *format);
 
 /*--- Flags -----*/
-
+int f_plus_handler(const char *format, va_list ap, int* count,
+		int* total, char* buffer);
 #endif

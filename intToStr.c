@@ -2,36 +2,42 @@
 #include <stdlib.h>
 
 /**
- * intToString - converts integer to string
- * @num: number
- * Return: string
+ * my_itoa - converts digit to character
+ * @buffer: buffer
+ * @num: digit to be converted
+ *
+ * Return: always 0
  */
 
-char *intToString(int num)
+int my_itoa(char* buffer, int num)
 {
-	int length = 0;
-	int temp = num;
-	int digit;
-	char *str;
-	int index = 0;
+	int digit, len, temp = num;
+	int original_len;
+
+	len = 0;
+
+	if (num == 0)
+	{
+		buffer[0] = '0';
+		buffer[1] = '\0';
+		return (1);
+	}
 
 	while (temp != 0)
 	{
-		length++;
 		temp /= 10;
+		len++;
 	}
 
-	str = (char *)malloc((length + 1) * sizeof(char));
+	original_len = len;
 
 	while (num != 0)
 	{
 		digit = num % 10;
-		str[index] = digit + '0';
-		index++;
+		buffer[len - 1] = '0' + digit;
 		num /= 10;
+		len--;
 	}
-
-	str[index] = '\0';
-
-	return (str);
+	return (original_len);
 }
+
