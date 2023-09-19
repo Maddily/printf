@@ -13,6 +13,8 @@
 #define HASH_FLAG
 #define ZERO_FLAG
 
+#define UNUSED(x) (void)(x)
+
 /**
  * struct fmt_specifier - A structure of a specifier
  * and its corresponding function pointer
@@ -22,7 +24,8 @@
 typedef struct fmt_specifier
 {
 	char spec;
-	void (*hndlr)(va_list ap, int *count, int *total, char *buffer);
+	void (*hndlr)(va_list ap, int *count, int *total, char *buffer,
+			int field_width);
 } fmt_spec;
 
 int _printf(const char *format, ...);
@@ -33,23 +36,31 @@ void fill_buffer(const char *format, int *count, int *total, char *buffer);
 int handle_all(const char *format, va_list ap, int *count, int *total,
 		char *buffer, fmt_spec *spec);
 int handle_struct(const char *format, fmt_spec *spec, va_list ap, int *count,
-		int *total, char *buffer);
+		int *total, char *buffer, int field_width);
+void buffer_status_handler(int *count, int *total, char *buffer);
+void field_width_handler(int field_width, char *buffer, int *count,
+		int *total);
 
-void char_format_handler(va_list ap, int *count, int *total, char *buffer);
-void str_format_handler(va_list ap, int *count, int *total, char *buffer);
-void ptr_format_handler(va_list ap, int *count, int *total, char *buffer);
+void char_format_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width);
+void str_format_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width);
+void ptr_format_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width);
 void percent_handler(int *count, int *total, char *buffer);
 void handle_zero_number(int *count, int *total, char *buffer);
 
 /* --------- Numbers ------*/
-void int_format_handler(va_list ap, int *count, int *total, char *buffer);
-void u_format_handler(va_list ap, int *count,
-		int *total, char *buffer);
-void o_format_handler(va_list ap, int *count,
-		int *total, char *buffer);
-void x_format_handler(va_list ap, int *count,
-		int *total, char *buffer);
-void printUpperHex(va_list ap, int *count, int *total, char *buffer);
+void int_format_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width);
+void u_format_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width);
+void o_format_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width);
+void x_format_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width);
+void printUpperHex(va_list ap, int *count, int *total, char *buffer,
+		int field_width);
 
 /* --------- Characters ----*/
 int our_ptchar(char c);
@@ -57,10 +68,14 @@ char *intToString(int num);
 
 
 /*--- Custom Format Specifiers ---*/
-void custom_b_handler(va_list ap, int *count, int *total, char *buffer);
-void custom_S_handler(va_list ap, int *count, int *total, char *buffer);
-void custom_r_handler(va_list ap, int *count, int *total, char *buffer);
-void custom_R_handler(va_list ap, int *count, int *total, char *buffer);
+void custom_b_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width);
+void custom_S_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width);
+void custom_r_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width);
+void custom_R_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width);
 
 /*--- Length Modifiers ---*/
 void long_modifier_handler(const char *format, va_list ap, int *count,

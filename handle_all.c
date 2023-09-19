@@ -13,7 +13,7 @@
 int handle_all(const char *format, va_list ap, int *count, int *total,
 		char *buffer, fmt_spec *spec)
 {
-	int ret;
+	int ret, field_width = 0;
 
 	while (*format)
 	{
@@ -23,21 +23,23 @@ int handle_all(const char *format, va_list ap, int *count, int *total,
 			if (*format == '%')
 				percent_handler(count, total, buffer);
 			else if (*format == 'l')
-			{
-				long_modifier_handler(format, ap, count,
-						total, buffer);
-				format++;
-			}
+				long_modifier_handler(format, ap, count, total, buffer), format++;
 			else if (*format == 'h')
+				short_modifier_handler(format, ap, count, total, buffer), format++;
+			else if ((*format >= '1' && *format <= '9') || *format == '*')
 			{
-				short_modifier_handler(format, ap, count,
-						total, buffer);
-				format++;
+				if (*format >= '1' && *format <= '9')
+				{
+					while (*format >= '0' && *format <= '9')
+						field_width = (field_width * 10) + (*format - '0'), format++; }
+				else if (*format == '*')
+					field_width = va_arg(ap, int), format++;
+				handle_struct(format, spec, ap, count, total, buffer, field_width);
+				field_width = 0;
 			}
 			else
 			{
-				ret = handle_struct(format, spec, ap, count,
-							total, buffer);
+				ret = handle_struct(format, spec, ap, count, total, buffer, field_width);
 				if (ret == -1)
 					return (-1);
 			}

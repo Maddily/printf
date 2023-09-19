@@ -6,14 +6,17 @@
  * @count: The number of printed characters
  * @total: A pointer to the total number of characters printed
  * @buffer: A pointer to the buffer holding the characters to be printed
+ * @field_width: The field width
  */
-void custom_R_handler(va_list ap, int *count, int *total, char *buffer)
+void custom_R_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width)
 {
 	int i, j, len;
 	char *string = va_arg(ap, char *);
 	char rot1[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	char rot2[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 
+	UNUSED(field_width);
 	if (string == NULL)
 		string = "(null)";
 	len = find_length(string);
@@ -26,27 +29,16 @@ void custom_R_handler(va_list ap, int *count, int *total, char *buffer)
 			{
 				if (string[i] == rot1[j])
 				{
-					buffer[*count] = rot2[j];
-					(*count)++;
-					if (*count == 1024)
-					{
-						*total += write(1, (const void *)buffer
-								, *count);
-						*count = 0;
-					}
-						break;
+					buffer[(*count)++] = rot2[j];
+					buffer_status_handler(count, total, buffer);
+					break;
 				}
 			}
 		}
 		else
 		{
 			buffer[(*count)++] = string[i];
-			if (*count == 1024)
-			{
-				*total += write(1, (const void *)buffer
-						, *count);
-				*count = 0;
-			}
+			buffer_status_handler(count, total, buffer);
 		}
 	}
 }

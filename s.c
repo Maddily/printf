@@ -7,9 +7,10 @@
  * @count: The number of printed characters
  * @total: A pointer to the total number of characters printed
  * @buffer: A pointer to the buffer holding the characters to be printed
- *
+ * @field_width: The field width
  */
-void str_format_handler(va_list ap, int *count, int *total, char *buffer)
+void str_format_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width)
 {
 	int i, len;
 	char *string = va_arg(ap, char *);
@@ -18,15 +19,16 @@ void str_format_handler(va_list ap, int *count, int *total, char *buffer)
 		string = "(null)";
 
 	len = find_length(string);
+
+	if (field_width > 0)
+	{
+		field_width -= len;
+		field_width_handler(field_width, buffer, count, total);
+	}
+
 	for (i = 0; i < len; i++)
 	{
-		buffer[*count] = string[i];
-		(*count)++;
-
-		if (*count == 1024)
-		{
-			*total += write(1, (const void *)buffer, *count);
-			*count = 0;
-		}
+		buffer[(*count)++] = string[i];
+		buffer_status_handler(count, total, buffer);
 	}
 }

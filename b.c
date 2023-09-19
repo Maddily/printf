@@ -8,12 +8,16 @@
  * @count: A pointer to the number of printed characters
  * @total: A pointer to the total number of characters printed
  * @buffer: A pointer to the buffer holding the characters to be printed
+ * @field_width: The field width
  */
-void custom_b_handler(va_list ap, int *count, int *total, char *buffer)
+void custom_b_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width)
 {
 	unsigned int number;
 	char bin[CHAR_BIT * sizeof(unsigned int)];
 	int i, j;
+
+	UNUSED(field_width);
 
 	number = va_arg(ap, unsigned int);
 	if (number == 0)

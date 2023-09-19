@@ -6,11 +6,15 @@
  * @count: The number of printed characters
  * @total: A pointer to the total number of characters printed
  * @buffer: A pointer to the buffer holding the characters to be printed
+ * @field_width: The field width
  */
-void custom_r_handler(va_list ap, int *count, int *total, char *buffer)
+void custom_r_handler(va_list ap, int *count, int *total, char *buffer,
+		int field_width)
 {
 	int i, len;
 	char *string = va_arg(ap, char *);
+
+	UNUSED(field_width);
 
 	if (string == NULL)
 		string = "(null)";
