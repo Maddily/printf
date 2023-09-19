@@ -60,7 +60,8 @@ int main(void)
 	_printf("Len:[%d]\n", len);
 	printf("Len:[%d]\n", len2);
 	_printf("%S\n", "Best\nSchool");
-	printf("Field width of 5: %5d\n", num);
+	_printf("%R\n", "hihihi");
+	_printf("%r\n", "hihihi");
 	_printf("Field width of 5: %5d\n", num);
 	printf("Field width of 5: %5d\n", num);
 	_printf("Field width of 5: %*d\n", 5, num);
