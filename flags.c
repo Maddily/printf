@@ -27,16 +27,28 @@ int f_plus_handler(const char *format, va_list ap, int *count,
 		(*total)++;
 		len = my_itoa(format, buffer + *count, num, 10);
 	}
+	else if (num == 2147483647)
+	{
+		buffer[*count] = '+';
+		(*count)++;
+		(*total)++;
+		len = my_itoa(format, buffer + *count, num, 10);
+	}
+	else if (num == -2147483648)
+	{
+		buffer[*count] = '-';
+		(*count)++;
+		(*total)++;
+		len = my_itoa(format, buffer + *count, -(num + 1), 10);
+	}
 	else
 	{
 		len = my_itoa(format, buffer + *count, num, 10);
 	}
-
 	(*count) += len;
 	(*total) += len;
 
 	buffer[*count] = '\0';
-
 	return (0);
 }
 
