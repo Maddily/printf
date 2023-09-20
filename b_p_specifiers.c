@@ -74,7 +74,11 @@ void ptr_format_handler(va_list ap, int *count, int *total, char *buffer,
 
 	if (ptr == NULL)
 	{
-		hexa_buffer[i++] = '0';
+		buffer[(*count)++] = '(';
+		buffer[(*count)++] = 'n';
+		buffer[(*count)++] = 'i';
+		buffer[(*count)++] = 'l';
+		buffer[(*count)++] = ')';
 	}
 	else
 	{
