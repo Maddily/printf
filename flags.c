@@ -76,29 +76,19 @@ int f_space_handler(const char *format, va_list ap, int *count,
 		}
 
 		if (format[1] == 'o')
-		{
 			len = my_itoa(format, buffer + *count, num, 8);
-		}
 		else if (format[1] == 'u')
-		{
 			len = my_itoa(format, buffer + *count, num, 10);
-		}
 		else if (format[1] == 'x')
-		{
 			len = my_itoa(format, buffer + *count, num, 16);
-		}
 		else if (format[1] == 'X')
-		{
 			len = my_itoa(format, buffer + *count, num, 16);
-		}
 
 		(*count) += len;
 		(*total) += len;
 	}
 	else
-	{
 		return (1);
-	}
 
 	buffer[*count] = '\0';
 
@@ -124,7 +114,6 @@ int f_hash_handler(const char *format, va_list ap, int *count,
 
 	num = va_arg(ap, int);
 	len = 0;
-
 	if (format[1] == 'o' || format[1] == 'x' || format[1] == 'X')
 	{
 		if (num != 0 && num > 0)
@@ -150,7 +139,6 @@ int f_hash_handler(const char *format, va_list ap, int *count,
 				len = find_length(buffer + len);
 			}
 		}
-
 		(*count) += len;
 		(*total) += len;
 	}
@@ -158,9 +146,6 @@ int f_hash_handler(const char *format, va_list ap, int *count,
 	{
 		return (1);
 	}
-
-	if (*count >= 1024 - 1)
-		return (1);
 
 	buffer[*count] = '\0';
 	return (0);

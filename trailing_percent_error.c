@@ -10,6 +10,11 @@ int trailing_percent_error(const char *format)
 {
 	int format_len = find_const_length(format);
 
+	if (format == NULL)
+	{
+		return (-1);
+	}
+
 	if (format[format_len - 1] == '%')
 	{
 		return (-1);

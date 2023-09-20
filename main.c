@@ -92,5 +92,14 @@ int main(void)
 	_printf("flag +: %d\n", c);
 	printf("Field width of 5: %5d\n", num);
 	_printf("Field width of 5: %5d\n", num);
+	printf("%%");
+	_printf("%%");
+	printf(NULL);
+	_printf(NULL);
+	printf("%!\n");
+	_printf("us %!\n");
+	printf("%K\n");
+	_printf("us %K\n");
+
 	return (0);
 }
