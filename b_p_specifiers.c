@@ -79,6 +79,7 @@ void ptr_format_handler(va_list ap, int *count, int *total, char *buffer,
 		buffer[(*count)++] = 'i';
 		buffer[(*count)++] = 'l';
 		buffer[(*count)++] = ')';
+		buffer_status_handler(count, total, buffer);
 		return;
 	}
 	else

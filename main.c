@@ -88,6 +88,26 @@ int main(void)
 	_printf("Flag +: %+i\n", num);
 	printf("flag +: %d\n", "-12");
 	_printf("flag +: %d\n", "-12");
+	printf("cp %+d\n", 1024);
+	_printf("%+d\n", 1024);
+	printf("cp %+d\n", -1024);
+	_printf("%+d\n", -1024);
+	printf("cp %+d\n", 0);
+	_printf("%+d\n", 0);
+	printf("\n");
+	printf("cp %+d\n", INT_MAX);
+	_printf("%+d\n", INT_MAX);
+	printf("\n");
+	printf("cp %+d\n", INT_MIN);
+	_printf("%+d\n", INT_MIN);
+	printf("\n");
+	printf("There is %+d bytes in %+d KB\n", 1024, 1);
+	_printf("There is %+d bytes in %+d KB\n", 1024, 1);
+	printf("cp %+d - %+d = %+d\n", 1024, 2048, -1024);
+	_printf("%+d - %+d = %+d\n", 1024, 2048, -1024);
+	printf("cp %+d + %+d = %+d\n", INT_MIN, INT_MAX, (INT_MIN + INT_MAX));
+	_printf("%+d + %+d = %+d\n", INT_MIN, INT_MAX, (INT_MIN + INT_MAX));
+
 	printf("flag +: %d\n", c);
 	_printf("flag +: %d\n", c);
 	printf("Field width of 5: %5d\n", num);
@@ -100,7 +120,9 @@ int main(void)
 	_printf("us %!\n");
 	printf("cp %K\n");
 	_printf("us %K\n");
-	printf("%p", NULL);
 	_printf("%p", NULL);
+	printf("%p", NULL);
+	printf("%6d", -102498402);
+	_printf("%6d", -102498402);
 	return (0);
 }
