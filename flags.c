@@ -162,3 +162,79 @@ int f_hash_handler(const char *format, va_list ap, int *count,
 	buffer[*count] = '\0';
 	return (0);
 }
+
+/**
+ * f_minus_handler - handles [-]
+ * @format: A pointer to the format string
+ * @ap: Argument pointer
+ * @count: A pointer to the count of characters in buffer
+ * @total: The total number of characters printed
+ * @buffer: A pointer to the buffer storing characters to be printed
+ *
+ * Return: 0 on success, on failure 1
+ */
+
+int f_minus_handler(const char *format, va_list ap, int *count,
+		int *total, char *buffer)
+{
+	int i;
+	int buff_size = 1024;
+	(void)ap;
+
+	*count = 0;
+	*total = 0;
+
+	for (i = 0; format[i] != '\0' && buff_size - 1; i++)
+	{
+		if (format[i] == '-')
+		{
+			(*count)++;
+			(*total)++;
+			buffer[i] = '-';
+		}
+	}
+	buffer[i] = '\0';
+	return (*count);
+
+}
+
+/**
+ * f_zero_handler - handles [0]
+ * @format: A pointer to the format string
+ * @ap: Argument pointer
+ * @count: A pointer to the count of characters in buffer
+ * @total: The total number of characters printed
+ * @buffer: A pointer to the buffer storing characters to be printed
+ *
+ * Return: 0 on success, on failure 1
+ */
+
+int f_zero_handler(const char *format, va_list ap, int *count,
+		int *total, char *buffer)
+{
+	int len;
+	int num = va_arg(ap, int);
+
+	if (format == NULL)
+		return (1);
+
+	len = 0;
+
+	if (format[1] == 'd' || format[1] == 'i' || format[1] == 'o'
+			|| format[1] == 'u' || format[1] == 'x'
+			|| format[1] == 'X')
+	{
+		*count += 1;
+		*total += num;
+		len = my_itoa(format, buffer + *count, num, 10);
+		printf("Format specifier: %c\n", format[1]);
+	}
+	else
+	{
+		return (1);
+	}
+	(*count) += len;
+	(*total) += len;
+	buffer[*count] = '\0';
+	return (0);
+}

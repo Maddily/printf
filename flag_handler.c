@@ -19,6 +19,10 @@ int flag_handler(const char *format, va_list ap, int *count,
 		f_space_handler(format, ap, count, total, buffer), format++;
 	else if (*format == '#')
 		f_hash_handler(format, ap, count, total, buffer), format++;
+	else if (*format == '-')
+		f_minus_handler(format, ap, count, total, buffer), format++;
+	else if (*format == '0')
+		f_zero_handler(format, ap, count, total, buffer), format++;
 	else
 		return (1);
 
