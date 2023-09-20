@@ -96,10 +96,11 @@ int main(void)
 	_printf("%%");
 	printf(NULL);
 	_printf(NULL);
-	printf("%!\n");
+	printf("cp %!\n");
 	_printf("us %!\n");
-	printf("%K\n");
+	printf("cp %K\n");
 	_printf("us %K\n");
-
+	printf("%p", NULL);
+	_printf("%p", NULL);
 	return (0);
 }

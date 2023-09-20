@@ -27,6 +27,9 @@ int find_length(char *s)
 {
 	int len;
 
+	if (s == NULL)
+		return (-1);
+
 	len = 0;
 	while (s[len] != '\0')
 		len++;

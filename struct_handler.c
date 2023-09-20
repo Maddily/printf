@@ -23,5 +23,6 @@ int handle_struct(const char *format, fmt_spec *spec, va_list ap, int *count,
 		}
 		spec++;
 	}
+
 	return (-1);
 }

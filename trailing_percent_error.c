@@ -15,7 +15,7 @@ int trailing_percent_error(const char *format)
 		return (-1);
 	}
 
-	if (format[format_len - 1] == '%')
+	if (format_len > 0 && format[format_len - 1] == '%')
 	{
 		return (-1);
 	}
