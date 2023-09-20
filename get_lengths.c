@@ -9,6 +9,9 @@ int find_const_length(const char *s)
 {
 	int len;
 
+	if (s == NULL)
+		return (0);
+
 	len = 0;
 	while (s[len] != '\0')
 		len++;
@@ -24,6 +27,9 @@ int find_const_length(const char *s)
 int find_length(char *s)
 {
 	int len;
+
+	if (s == NULL)
+		return (0);
 
 	len = 0;
 	while (s[len] != '\0')
