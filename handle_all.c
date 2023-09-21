@@ -48,14 +48,12 @@ int handle_all(const char *format, va_list ap, int *count, int *total,
 				return (-1); }
 		else
 			fill_buffer(format, count, total, buffer);
-		format++;
-	}
+		format++; }
 	if (ret == -1)
 		return (-1);
 	if (*count > 0)
 		*total += write(1, (const void *)buffer, *count);
-	return (0);
-}
+	return (0); }
 
 /**
  * precision_handler - Handles the precision
